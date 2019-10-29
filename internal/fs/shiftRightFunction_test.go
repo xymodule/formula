@@ -2,10 +2,10 @@ package fs
 
 import (
 	"fmt"
-	"formula/internal/exp"
+	"github.com/xymodule/formula/internal/exp"
 	"testing"
 
-	"formula/opt"
+	"github.com/xymodule/formula/opt"
 )
 
 func TestShiftRightFunction_Evaluate(t *testing.T) {

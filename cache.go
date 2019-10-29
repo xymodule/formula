@@ -1,8 +1,8 @@
 package formula
 
 import (
-	"formula/internal/cache"
-	"formula/opt"
+	"github.com/xymodule/formula/internal/cache"
+	"github.com/xymodule/formula/opt"
 )
 
 //Register custom function which implement opt.Function

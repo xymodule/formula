@@ -1,7 +1,7 @@
 package exp
 
 import (
-	"formula/opt"
+	"github.com/xymodule/formula/opt"
 )
 
 type TernaryExpression struct {
@@ -27,7 +27,7 @@ func (expression *TernaryExpression) Evaluate(context *opt.FormulaContext) (*opt
 	}
 
 	retArg := left.Bool()
-/*	if left.Type != reflect.Bool {
+	/*	if left.Type != reflect.Bool {
 		return nil, fmt.Errorf("ternary need bool first")
 	}*/
 
@@ -37,4 +37,3 @@ func (expression *TernaryExpression) Evaluate(context *opt.FormulaContext) (*opt
 
 	return (*expression.Right).Evaluate(context)
 }
-

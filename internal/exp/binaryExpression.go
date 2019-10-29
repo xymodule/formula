@@ -1,8 +1,8 @@
 package exp
 
 import (
-	"formula/internal/cache"
-	"formula/opt"
+	"github.com/xymodule/formula/internal/cache"
+	"github.com/xymodule/formula/opt"
 )
 
 type BinaryExpression struct {

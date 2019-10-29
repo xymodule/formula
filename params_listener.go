@@ -1,8 +1,8 @@
 package formula
 
 import (
-	"formula/internal/exp"
-	"formula/internal/parser"
+	"github.com/xymodule/formula/internal/exp"
+	"github.com/xymodule/formula/internal/parser"
 )
 
 type CustomParamsListener struct {
@@ -11,14 +11,14 @@ type CustomParamsListener struct {
 }
 
 // ExitId is called when exiting the id production.
-func (s *CustomParamsListener) ExitId(c *parser.IdContext){
+func (s *CustomParamsListener) ExitId(c *parser.IdContext) {
 	v := c.GetRetValue()
-	if n,ok := (*v).(*exp.VarIdentifierExpression); ok{
-		s.paramNames = append(s.paramNames,n.Name)
+	if n, ok := (*v).(*exp.VarIdentifierExpression); ok {
+		s.paramNames = append(s.paramNames, n.Name)
 	}
 }
 
-func (s *CustomParamsListener) GetParamNames() []string{
+func (s *CustomParamsListener) GetParamNames() []string {
 	return s.paramNames
 }
 
@@ -200,4 +200,3 @@ func (s *ParamsListener) ExitValue(c *parser.ValueContext){
 func (s *ParamsListener) ExitΠ(c *parser.ΠContext){
 
 }*/
-

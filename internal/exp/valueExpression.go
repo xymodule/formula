@@ -1,7 +1,7 @@
 package exp
 
 import (
-	"formula/opt"
+	"github.com/xymodule/formula/opt"
 	"math"
 	"reflect"
 	"strconv"

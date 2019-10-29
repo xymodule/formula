@@ -11,8 +11,8 @@ import (
 )
 
 import (
-	"formula/internal/exp"
-	"formula/opt"
+	"github.com/xymodule/formula/internal/exp"
+	"github.com/xymodule/formula/opt"
 )
 
 // Suppress unused import errors

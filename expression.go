@@ -7,23 +7,24 @@ import (
 	"strings"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"formula/internal/cache"
-	"formula/internal/exp"
+	"github.com/xymodule/formula/internal/cache"
+	"github.com/xymodule/formula/internal/exp"
 	//register system functions
-	_ "formula/internal/fs"
-	"formula/internal/parser"
-	"formula/opt"
+	_ "github.com/xymodule/formula/internal/fs"
+	"github.com/xymodule/formula/internal/parser"
+	"github.com/xymodule/formula/opt"
 )
+
 var LuaFunctionRegexp = `lua[('\s]+function[\w\s]+\(([a-zA-Z0-9,\s]+)\).*?end\'\)`
 var WildcardRegexp = `(@[\w\d\.]+(\.\*)+[\.\w\d\*]*)[,\s)]`
-var WildcardSymbols = []string{"sum(","count","avg"}
+var WildcardSymbols = []string{"sum(", "count", "avg"}
 
 //Expression for build user's input
 type Expression struct {
 	context            *opt.FormulaContext
 	originalExpression string
 	parsedExpression   *opt.LogicalExpression
-	paramNames []string
+	paramNames         []string
 }
 
 //NewExpression create new Expression
@@ -53,7 +54,6 @@ func (expression *Expression) compile() error {
 	lexer := parser.NewFormulaLexer(antlr.NewInputStream(expression.originalExpression))
 	formulaParser := parser.NewFormulaParser(antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel))
 
-
 	//handle compile error
 	errListener := newFormulaErrorListener()
 	formulaParser.AddErrorListener(errListener)
@@ -69,9 +69,9 @@ func (expression *Expression) compile() error {
 	expression.paramNames = paramsListener.GetParamNames()
 	cache.Store(expression.context.Option, expression.originalExpression,
 		&cache.ExpressionCache{
-			LogicalExpression:expression.parsedExpression,
-			ParamNames:expression.paramNames,
-	})
+			LogicalExpression: expression.parsedExpression,
+			ParamNames:        expression.paramNames,
+		})
 	return nil
 }
 
@@ -95,7 +95,7 @@ func (expression *Expression) AddParameter(name string, value interface{}) error
 	return nil
 }
 
-func (expression *Expression) GetParameterNames() []string{
+func (expression *Expression) GetParameterNames() []string {
 	return expression.paramNames
 }
 
@@ -114,7 +114,6 @@ func (expression *Expression) GetResult() (*opt.Argument, error) {
 	}
 	return result, nil
 }
-
 
 //ResetParameters clear all parameter
 func (expression *Expression) ResetParameters() {

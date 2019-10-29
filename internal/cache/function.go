@@ -2,9 +2,10 @@ package cache
 
 import (
 	"fmt"
-	"formula/opt"
 	"strings"
 	"sync"
+
+	"github.com/xymodule/formula/opt"
 )
 
 var defaultFunctionCache = make(map[string]*opt.Function, 256)

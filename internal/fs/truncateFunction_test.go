@@ -2,12 +2,12 @@ package fs
 
 import (
 	"fmt"
-	"formula/internal/exp"
+	"github.com/xymodule/formula/internal/exp"
 	"math"
 	"strconv"
 	"testing"
 
-	"formula/opt"
+	"github.com/xymodule/formula/opt"
 )
 
 func TestTruncateFunction_Evaluate(t *testing.T) {

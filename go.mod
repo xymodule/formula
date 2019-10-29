@@ -1,4 +1,4 @@
-module formula
+module github.com/xymodule/formula
 
 go 1.13
 

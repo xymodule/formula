@@ -1,7 +1,7 @@
 package fs
 
 import (
-	"formula/opt"
+	"github.com/xymodule/formula/opt"
 	"reflect"
 	"strings"
 )

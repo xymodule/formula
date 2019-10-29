@@ -1,9 +1,9 @@
 package fs
 
 import (
-	"formula/internal/cache"
-	_func "formula/internal/func"
-	"formula/opt"
+	"github.com/xymodule/formula/internal/cache"
+	_func "github.com/xymodule/formula/internal/func"
+	"github.com/xymodule/formula/opt"
 )
 
 func init() {

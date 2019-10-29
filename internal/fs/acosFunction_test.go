@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"testing"
 
-	"formula/internal/exp"
+	"github.com/xymodule/formula/internal/exp"
 
-	"formula/opt"
+	"github.com/xymodule/formula/opt"
 )
 
 func TestAcosFunction_Evaluate(t *testing.T) {

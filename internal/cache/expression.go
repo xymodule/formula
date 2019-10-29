@@ -1,7 +1,7 @@
 package cache
 
 import (
-	"formula/opt"
+	"github.com/xymodule/formula/opt"
 	"sync"
 )
 
@@ -9,20 +9,20 @@ var _default_expression ExpressionManager
 
 type ExpressionManager struct {
 	expressionMap map[string]*ExpressionCache
-	mu sync.RWMutex
+	mu            sync.RWMutex
 }
 
-func init(){
+func init() {
 	_default_expression.init()
 }
 
 type ExpressionCache struct {
 	LogicalExpression *opt.LogicalExpression
-	ParamNames []string
+	ParamNames        []string
 }
 
-func (p *ExpressionManager) init(){
-	p.expressionMap = make(map[string]*ExpressionCache,512)
+func (p *ExpressionManager) init() {
+	p.expressionMap = make(map[string]*ExpressionCache, 512)
 }
 
 func (p *ExpressionManager) add(key string, value *ExpressionCache) {
@@ -31,14 +31,14 @@ func (p *ExpressionManager) add(key string, value *ExpressionCache) {
 	p.expressionMap[key] = value
 }
 
-func (p *ExpressionManager) get(key string) *ExpressionCache{
+func (p *ExpressionManager) get(key string) *ExpressionCache {
 	defer p.mu.RUnlock()
 	p.mu.RLock()
 	return p.expressionMap[key]
 }
 
 func Store(option opt.Option, originalExpression string, expressionCache *ExpressionCache) {
-	_default_expression.add(originalExpression,expressionCache)
+	_default_expression.add(originalExpression, expressionCache)
 }
 
 func Restore(option opt.Option, originalExpression string) *ExpressionCache {
