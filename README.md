@@ -6,9 +6,13 @@
 * 支持三角函数
 * 支持位运算
 * 支持三元操作
+* 支持逻辑运算符
 * 支持自定义参数
 * 支持自定义函数
 * 支持公式缓存
+
+支持lua
+* 支持lua缓存
 
 内置函数如下表
 
@@ -26,7 +30,7 @@
 | exp      | 1        | exp(3.3)            | 27.112638920657883       |
 | floor    | 1        | floor(2.2)          | 2                        |
 | \>       | 2        | 3 > 2               | true                     |
-| iif      | 3        | iif(3 > 2,π,10)     | 3.141592653589793        |
+| if      | 3        | iif(3 > 2,π,10)     | 3.141592653589793        |
 | \<       | 2        | 3 < 2               | false                    |
 | in       | n        | in(3,3,4,5)         | true                     |
 | ln       | 1        | ln(2.718281828)     | 0.9999999998311266       |
@@ -53,115 +57,8 @@
 * 普通数学公式调用
 
 ``` go
-
-expression:=formula.NewExpression("1+2")
-result,err:=expression.Evaluate()
+params := make(map[string]interface{})
+r,err:=HandleFormula("1+2",params)
 if err!=nil{
     //handle err
 }
-
-v,err:= result.Int64()
-if err!=nil{
-    //handle err
-}
-
-//v should equal 3
-
-```
-
-* 自定义参数调用
-```go
-expression := NewExpression("[i]+[j]")
-err := expression.AddParameter("i", 1)
-if err != nil {
-    t.Fatal(err)
-}
-err = expression.AddParameter("j", 2)
-if err != nil {
-    t.Fatal(err)
-}
-result, err := expression.Evaluate()
-//handle result
-```
-
-自定义公式开发
-
-* 实现接口 opt.Function
-```go
-type CustomFunction struct {
-}
-
-func (*CustomFunction) Name() string {
-	return "CustomFunction"
-}
-
-func (f *CustomFunction) Evaluate(context *opt.FormulaContext, args ...*opt.LogicalExpression) (*opt.Argument, error) {
-	err := opt.MatchTwoArgument(f.Name(), args...)
-	if err != nil {
-		return nil, err
-	}
-
-	left, err := (*args[0]).Evaluate(context)
-	if err != nil {
-		return nil, err
-	}
-
-	leftValue, err := left.Int64()
-	if err != nil {
-		return nil, err
-	}
-
-	right, err := (*args[1]).Evaluate(context)
-	if err != nil {
-		return nil, err
-	}
-
-	rightValue, err := right.Int64()
-	if err != nil {
-		return nil, err
-	}
-
-	return opt.NewArgumentWithType(leftValue+rightValue+1, reflect.Int64), nil
-}
-```
-
-* 注册自定义函数
-```go
-func init() {
-	var f opt.Function = new(CustomFunction)
-	err := formula.Register(&f)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-```
-
-* 调用自定义函数
-
-```go
-expression := formula.NewExpression("CustomFunction(1,2)")
-result, err := expression.Evaluate()
-if err != nil {
-    log.Fatal(err)
-}
-
-v, err := result.Int64()
-if err != nil {
-    log.Fatal(err)
-}
-
-if v != 4 { //CustomFunction: i+j+1
-    log.Fatal("error")
-}
-
-log.Println("custom function succeed")
-```
-
-## 性能测试
-
-```bash
-BenchmarkOnePlusOne-8   	   50000	     26676 ns/op
-BenchmarkOne-8   	           100000	     19401 ns/op
-BenchmarkComplexOne-8   	   10000	    180650 ns/op
-BenchmarkSin-8   	           20000	     78591 ns/op
-```
