@@ -1,7 +1,7 @@
 package fs
 
 import (
-	"github.com/yidane/formula/opt"
+	"formula/opt"
 	"math"
 	"reflect"
 )
@@ -18,7 +18,7 @@ func (f *SignFunction) Evaluate(context *opt.FormulaContext, args ...*opt.Logica
 	if err != nil {
 		return nil, err
 	}
-
+	
 	return opt.NewArgumentWithType(math.Signbit(v), reflect.Bool), nil
 }
 

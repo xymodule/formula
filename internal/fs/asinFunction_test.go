@@ -2,8 +2,8 @@ package fs
 
 import (
 	"fmt"
-	"github.com/yidane/formula/internal/exp"
-	"github.com/yidane/formula/opt"
+	"formula/internal/exp"
+	"formula/opt"
 	"math"
 	"strconv"
 	"testing"

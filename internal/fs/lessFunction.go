@@ -2,7 +2,7 @@ package fs
 
 import (
 	"fmt"
-	"github.com/yidane/formula/opt"
+	"formula/opt"
 	"reflect"
 )
 

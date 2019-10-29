@@ -2,8 +2,7 @@ package fs
 
 import (
 	"fmt"
-	"github.com/yidane/formula/opt"
-	"reflect"
+	"formula/opt"
 )
 
 type IIFFunction struct {
@@ -23,11 +22,11 @@ func (f *IIFFunction) Evaluate(context *opt.FormulaContext, args ...*opt.Logical
 		return nil, err
 	}
 
-	if arg0.Type != reflect.Bool {
+	/*if arg0.Type != reflect.Bool {
 		return nil, fmt.Errorf("the first argument of function %s should be bool", f.Name())
-	}
-
-	if arg0.Value.(bool) {
+	}*/
+	retArg := arg0.Bool()
+	if retArg.Value.(bool) {
 		return (*args[1]).Evaluate(context)
 	}
 

@@ -1,8 +1,8 @@
 package formula
 
 import (
-	"github.com/yidane/formula/internal/cache"
-	"github.com/yidane/formula/opt"
+	"formula/internal/cache"
+	"formula/opt"
 )
 
 //Register custom function which implement opt.Function

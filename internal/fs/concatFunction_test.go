@@ -1,10 +1,10 @@
 package fs
 
 import (
-	"github.com/yidane/formula/internal/exp"
+	"formula/internal/exp"
 	"testing"
 
-	"github.com/yidane/formula/opt"
+	"formula/opt"
 )
 
 func TestConcatFunction_Evaluate(t *testing.T) {

@@ -2,11 +2,11 @@ package fs
 
 import (
 	"fmt"
-	"github.com/yidane/formula/internal/exp"
+	"formula/internal/exp"
 	"reflect"
 	"testing"
 
-	"github.com/yidane/formula/opt"
+	"formula/opt"
 )
 
 func TestLessFunction_Evaluate(t *testing.T) {

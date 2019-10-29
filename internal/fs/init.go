@@ -1,8 +1,9 @@
 package fs
 
 import (
-	"github.com/yidane/formula/internal/cache"
-	"github.com/yidane/formula/opt"
+	"formula/internal/cache"
+	_func "formula/internal/func"
+	"formula/opt"
 )
 
 func init() {
@@ -41,6 +42,14 @@ func init() {
 		NewSubtractFunction(),
 		NewTanFunction(),
 		NewTruncateFunction(),
+		NewAndFunction(),
+		NewOrFunction(),
+		NewLookupFunction(),
+		NewIfsFunction(),
+		NewGeFunction(),
+		NewLeFunction(),
+		NewEqFunction(),
+		NewNeFunction(),
 	}
 
 	for i := 0; i < len(fs); i++ {
@@ -49,6 +58,21 @@ func init() {
 			panic(err)
 		}
 	}
+
+	cs := []opt.Function{
+		&_func.LuaFunction{},
+		&_func.SumFunction{},
+		&_func.CountFunction{},
+		&_func.AverageFunction{},
+	}
+
+	for i := 0; i < len(cs); i++ {
+		err := cache.Register(&cs[i])
+		if err != nil {
+			panic(err)
+		}
+	}
+
 }
 
 func ParseFloat(name string, context *opt.FormulaContext, args ...*opt.LogicalExpression) (float64, error) {
