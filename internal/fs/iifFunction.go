@@ -9,7 +9,7 @@ type IIFFunction struct {
 }
 
 func (*IIFFunction) Name() string {
-	return "iif"
+	return "if"
 }
 
 func (f *IIFFunction) Evaluate(context *opt.FormulaContext, args ...*opt.LogicalExpression) (*opt.Argument, error) {
