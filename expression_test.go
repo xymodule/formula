@@ -6,8 +6,8 @@ import (
 	"math"
 	"testing"
 
-	"formula/internal/fs"
-	"formula/opt"
+	"github.com/xymodule/formula/internal/fs"
+	"github.com/xymodule/formula/opt"
 )
 
 func TestNewExpression(t *testing.T) {
